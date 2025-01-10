@@ -228,9 +228,7 @@ class TicTacToe {
       this.display.updateBoard(row, col, this.currentPlayer)
 
       const win = this.isGameWon(row, col)
-      const stalemate = this.board
-        .map(row => row.filter(col => col === ''))
-        .filter(row => row.length > 0)
+      const stalemate = this.board.map(row => row.filter(col => col === '')).filter(row => row.length > 0)
 
       if (!this.waiting) {
         if (win) {
@@ -263,7 +261,11 @@ class TicTacToe {
    * Create a new empty board
    * @return {Object[]} 3x3 multi-dimensional array of empty strings
    */
-  createBoard = (): Array<Array<string>> => [['', '', ''], ['', '', ''], ['', '', '']]
+  createBoard = (): Array<Array<string>> => [
+    ['', '', ''],
+    ['', '', ''],
+    ['', '', '']
+  ]
 
   /**
    * Restore the board to its original empty state
@@ -291,12 +293,12 @@ class TicTacToe {
         this.board[1][col] === this.currentPlayer &&
         this.board[2][col] === this.currentPlayer) ||
       // Diagonal win
-      ((this.board[0][0] === this.currentPlayer &&
+      (this.board[0][0] === this.currentPlayer &&
         this.board[1][1] === this.currentPlayer &&
         this.board[2][2] === this.currentPlayer) ||
-        (this.board[2][0] === this.currentPlayer &&
-          this.board[1][1] === this.currentPlayer &&
-          this.board[0][2] === this.currentPlayer))
+      (this.board[2][0] === this.currentPlayer &&
+        this.board[1][1] === this.currentPlayer &&
+        this.board[0][2] === this.currentPlayer)
     )
       return true
     return false
